@@ -1,1 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <meta
+    name="description"
+    content="Spraying Mantis Auto Repairs offers accident repairs, paintwork, bumper repairs, scratch removal and bodyshop services for cars and vans."
+  />
+  <meta property="og:title" content="<%= site.name %>" />
+  <meta property="og:description" content="Accident repairs, paintwork, bumper and scratch repair, panel refinishing and bodyshop services for cars and vans." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= site.domain %>" />
+  <meta property="og:image" content="<%= site.domain.replace(/\/$/, '') + site.logo %>" />
+  <link rel="icon" type="image/png" href="<%= site.logo %>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/public/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#top" aria-label="<%= site.name %> home">
+        <span class="brand-badge">
+          <img src="<%= site.logo %>" alt="<%= site.name %> logo" />
+        </span>
+        <span class="brand-text">
+          <small>Vehicle bodyshop</small>
+          <strong><%= site.name %></strong>
+        </span>
+      </a>
 
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#about">Why choose us</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="cta-btn" href="#contact">Get an estimate</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Accident repairs • Paintwork • Bodyshop</div>
+          <h1>Car body repairs with a sharp eye for detail.</h1>
+          <p>
+            <%= site.name %> provides accident repairs, paintwork, bumper and scratch repair,
+            panel refinishing and bodyshop services for cars and vans. Professional finish, honest advice,
+            and a local service you can trust.
+          </p>
+
+          <div class="hero-actions">
+            <a class="cta-btn" href="#contact">Book an estimate</a>
+            <a class="ghost-btn" href="tel:<%= site.phoneHref %>">Call <%= site.phone %></a>
+          </div>
+
+          <div class="hero-points">
+            <div class="point-card">
+              <strong>Cars & vans</strong>
+              <span>Private and commercial vehicle repair work welcome.</span>
+            </div>
+            <div class="point-card">
+              <strong>Free estimates</strong>
+              <span>Quick guidance on repair options and likely work needed.</span>
+            </div>
+            <div class="point-card">
+              <strong>Trusted finish</strong>
+              <span>Careful prep, paint and presentation from start to finish.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="hero-panel-inner">
+            <div class="logo-stage">
+              <img src="<%= site.logo %>" alt="<%= site.name %> logo" />
+            </div>
+
+            <div class="contact-mini">
+              <div>
+                <span class="dot"></span>
+                <div>
+                  <strong>Phone</strong>
+                  <a href="tel:<%= site.phoneHref %>"><%= site.phone %></a>
+                </div>
+              </div>
+              <div>
+                <span class="dot"></span>
+                <div>
+                  <strong>Email</strong>
+                  <a href="mailto:<%= site.email %>"><%= site.email %></a>
+                </div>
+              </div>
+              <div>
+                <span class="dot"></span>
+                <div>
+                  <strong>Instagram</strong>
+                  <a href="<%= site.instagramUrl %>" target="_blank" rel="noopener noreferrer"><%= site.instagramHandle %></a>
+                </div>
+              </div>
+              <div>
+                <span class="dot"></span>
+                <div>
+                  <strong>Coverage</strong>
+                  <span><%= site.coverageArea %></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span>Our services</span>
+          <h2>Everything needed to get your vehicle looking right again</h2>
+          <p>
+            This homepage keeps the straightforward repair-centre feel you wanted,
+            while giving the brand a cleaner and more modern look.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <% services.forEach(service => { %>
+            <article class="card">
+              <div class="icon-chip">✦</div>
+              <h3><%= service.title %></h3>
+              <p><%= service.text %></p>
+            </article>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="about">
+      <div class="container about-grid">
+        <div class="section-header no-bottom-gap">
+          <span>Why choose us</span>
+          <h2>A local repair centre with a standout identity</h2>
+          <p>
+            The logo and colour palette give this site a bold personality, while the layout keeps the content clear,
+            trustworthy and easy to navigate for customers on mobile or desktop.
+          </p>
+        </div>
+
+        <ul class="check-list">
+          <% reasons.forEach(reason => { %>
+            <li><span class="tick">✓</span><span><%= reason %></span></li>
+          <% }) %>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span>How it works</span>
+          <h2>A simple path from damaged vehicle to finished repair</h2>
+          <p>Useful for reassuring first-time visitors and making the process feel straightforward.</p>
+        </div>
+
+        <div class="steps-grid">
+          <% processSteps.forEach(step => { %>
+            <article class="step">
+              <span class="step-no"><%= step.no %></span>
+              <h3><%= step.title %></h3>
+              <p><%= step.text %></p>
+            </article>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <span>Gallery</span>
+          <h2>Add real before-and-after repairs here</h2>
+          <p>
+            These are placeholders for now. Once you have vehicle photos, this section will become one of the strongest trust builders on the site.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <% galleryItems.forEach(item => { %>
+            <article class="gallery-card">
+              <div class="gallery-image"><span><%= item.label %></span></div>
+              <h3><%= item.title %></h3>
+              <p><%= item.text %></p>
+            </article>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-header">
+          <span>Customer reviews</span>
+          <h2>Social proof can sit right on the homepage</h2>
+          <p>These are sample placeholders ready to replace with genuine customer feedback.</p>
+        </div>
+
+        <div class="review-grid">
+          <% reviews.forEach(review => { %>
+            <article class="review">
+              <div class="stars">★★★★★</div>
+              <p><%= review.text %></p>
+              <h3><%= review.name %></h3>
+            </article>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-wrap">
+        <div class="contact-card">
+          <div class="section-header no-bottom-gap">
+            <span>Contact us</span>
+            <h2>Need a quote for vehicle body repairs?</h2>
+            <p>
+              Your live phone, email and Instagram are already included below. Add an address and opening hours when ready.
+            </p>
+          </div>
+
+          <div class="contact-list">
+            <div>
+              <strong>Phone</strong>
+              <a href="tel:<%= site.phoneHref %>"><%= site.phone %></a>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:<%= site.email %>"><%= site.email %></a>
+            </div>
+            <div>
+              <strong>Instagram</strong>
+              <a href="<%= site.instagramUrl %>" target="_blank" rel="noopener noreferrer"><%= site.instagramHandle %></a>
+            </div>
+            <div>
+              <strong>Coverage</strong>
+              <span><%= site.coverageArea %></span>
+            </div>
+            <div>
+              <strong>Address</strong>
+              <span><%= site.addressLine1 %><br /><%= site.addressLine2 %></span>
+            </div>
+            <div>
+              <strong>Opening hours</strong>
+              <span><%= site.openingHours %></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Request an estimate</h3>
+          <p>
+            This form can send email if SMTP is configured in Render. If not, enquiries are still logged on the server.
+          </p>
+
+          <% if (notice) { %>
+            <div class="notice <%= notice.type === 'error' ? 'notice-error' : 'notice-success' %>">
+              <%= notice.text %>
+            </div>
+          <% } %>
+
+          <form class="fake-form" action="/contact" method="post">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" value="<%= formData?.name || '' %>" />
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="text" placeholder="Your phone number" value="<%= formData?.phone || '' %>" />
+            </div>
+
+            <div class="field-full">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="Your email address" value="<%= formData?.email || '' %>" />
+            </div>
+
+            <div class="field-full">
+              <label for="message">What needs repairing?</label>
+              <textarea id="message" name="message" placeholder="Tell us about the damage, your vehicle, and whether it is insurance or private work."><%= formData?.message || '' %></textarea>
+            </div>
+
+            <div class="field-full">
+              <button class="cta-btn" type="submit">Request estimate</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>
+        <strong class="footer-title"><%= site.name %></strong>
+        <span> — accident repairs, paintwork and bodyshop services.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
