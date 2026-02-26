@@ -1,0 +1,20 @@
+{
+  "name": "spraying-mantis-auto-repairs",
+  "version": "1.0.0",
+  "description": "Spraying Mantis Auto Repairs website built with Node.js, Express and EJS.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.1"
+  }
+}
