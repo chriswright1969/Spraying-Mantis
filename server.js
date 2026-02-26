@@ -39,9 +39,9 @@ function getSite() {
     instagramUrl: env('INSTAGRAM_URL', 'https://www.instagram.com/sprayingmantisautos'),
     instagramHandle: env('INSTAGRAM_HANDLE', '@sprayingmantisautos'),
     domain: env('DOMAIN', 'https://sprayingmantis.co.uk'),
-    coverageArea: env('COVERAGE_AREA', 'Wrexham and surrounding areas'),
+    coverageArea: env('COVERAGE_AREA', 'Ellesmere, Shropshire and surrounding areas'),
     addressLine1: env('ADDRESS_LINE_1', 'Unit 1, Example Trade Estate'),
-    addressLine2: env('ADDRESS_LINE_2', 'Wrexham, LL00 0AA'),
+    addressLine2: env('ADDRESS_LINE_2', 'Ellesmere, SY12 0AA'),
     openingHours: env('OPENING_HOURS', 'Mon-Fri 8:00am-5:00pm'),
     logo: env('DEFAULT_LOGO', '/public/logo2.png'),
     formRecipient: env('FORM_RECIPIENT', email)
@@ -100,42 +100,42 @@ const processSteps = [
 
 const reasons = [
   'Experienced bodyshop-style repair work for cars and vans',
-  'Clean, modern presentation for a strong first impression online',
-  'Clear contact routes by phone, email and Instagram',
-  'Designed to convert quickly into enquiries and quote requests',
-  'Works well as a GitHub + Render brochure site for Express',
-  'Easy to expand later with real gallery photos and customer reviews'
+  'Needs some blurb for this bit',
+  'Needs some blurb for this bitm',
+  'Needs some blurb for this bit',
+  'Needs some blurb for this bit',
+  'Needs some blurb for this bit'
 ];
 
 const galleryItems = [
   {
     label: 'Repair example 1',
     title: 'Bumper scuff repair',
-    text: 'Swap this for a real image and a short caption describing the work carried out.'
+    text: 'Need a picture for here.'
   },
   {
     label: 'Repair example 2',
     title: 'Panel respray & colour match',
-    text: 'Great for showing finish quality and the visual difference after repair.'
+    text: 'Need a picture for here.'
   },
   {
     label: 'Repair example 3',
     title: 'Van bodywork repair',
-    text: 'Useful if you want to show work on commercial vehicles as well as cars.'
+    text: 'Need a picture for here.'
   }
 ];
 
 const reviews = [
   {
-    name: 'A. Hughes',
+    name: 'B. Swollocks',
     text: 'Excellent repair and a really tidy finish. Friendly communication throughout and very professional.'
   },
   {
-    name: 'R. Edwards',
+    name: 'B. Dover',
     text: 'Brilliant result after accident damage. Paint match looked spot on and the vehicle came back looking superb.'
   },
   {
-    name: 'S. Morgan',
+    name: 'Al Colick',
     text: 'Quick estimate, honest advice and a high-quality job. Would happily recommend Spraying Mantis Auto Repairs.'
   }
 ];
@@ -151,7 +151,7 @@ function getNotice(query) {
   if (status === 'logged') {
     return {
       type: 'success',
-      text: 'Thanks — your enquiry was received. Email delivery is not configured yet on this deployment, so it was logged on the server instead.'
+      text: 'Thanks — your enquiry was received. Email delivery needs to be configured, so it was logged on the server instead.'
     };
   }
   if (status === 'error') {
