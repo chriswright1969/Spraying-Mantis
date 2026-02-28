@@ -4,12 +4,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import express from 'express';
-import nodemailer from 'nodemailer';
+import { sendContactMail } from './src/mailer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+app.set('trust proxy', 1);
 const PORT = Number(process.env.PORT || 3000);
 
 app.set('view engine', 'ejs');
@@ -209,40 +210,14 @@ app.post('/contact', async (req, res) => {
     });
   }
 
+  // Keep your existing “log instead of fail” behaviour until SMTP is configured
   const smtpHost = env('SMTP_HOST');
-  const smtpPort = Number(env('SMTP_PORT', '587'));
-  const smtpSecure = boolEnv('SMTP_SECURE', false);
   const smtpUser = env('SMTP_USER');
   const smtpPass = env('SMTP_PASS');
-  const smtpFrom = env('SMTP_FROM', site.email);
 
   try {
     if (smtpHost && smtpUser && smtpPass) {
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: smtpPort,
-        secure: smtpSecure,
-        auth: {
-          user: smtpUser,
-          pass: smtpPass
-        }
-      });
-
-      await transporter.sendMail({
-        from: smtpFrom,
-        to: site.formRecipient,
-        replyTo: email || undefined,
-        subject: `New website enquiry from ${name}`,
-        text: [
-          `Name: ${name}`,
-          `Phone: ${phone || 'Not provided'}`,
-          `Email: ${email || 'Not provided'}`,
-          '',
-          'Message:',
-          message
-        ].join('\n')
-      });
-
+      await sendContactMail({ name, phone, email, message });
       return res.redirect('/?status=sent#contact');
     }
 
