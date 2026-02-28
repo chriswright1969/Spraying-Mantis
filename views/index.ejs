@@ -13,18 +13,23 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="<%= site.domain %>" />
   <meta property="og:image" content="<%= site.domain.replace(/\/$/, '') + site.logo %>" />
+
+  <!-- Favicon can remain whatever site.logo is set to -->
   <link rel="icon" type="image/png" href="<%= site.logo %>" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/public/styles.css" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="#top" aria-label="<%= site.name %> home">
         <span class="brand-badge">
-          <img src="<%= site.logo %>" alt="<%= site.name %> logo" />
+          <!-- Header logo: mantis-logo.png in /public -->
+          <img src="/public/mantis-logo.png" alt="<%= site.name %> logo" />
         </span>
         <span class="brand-text">
           <small>Vehicle bodyshop</small>
@@ -80,7 +85,8 @@
         <aside class="hero-panel">
           <div class="hero-panel-inner">
             <div class="logo-stage">
-              <img src="<%= site.logo %>" alt="<%= site.name %> logo" />
+              <!-- Landing page large logo: keep using the existing main logo (logo2.png) -->
+              <img src="/public/logo2.png" alt="<%= site.name %> logo" />
             </div>
 
             <div class="contact-mini">
