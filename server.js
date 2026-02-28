@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import express from 'express';
-import { sendContactMail } from '/src/mailer.js';
+import { sendContactMail } from './src/mailer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
