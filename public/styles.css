@@ -80,20 +80,26 @@ img {
 }
 
 .brand-badge {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid rgba(214, 234, 52, 0.35);
-  background: #000;
-  box-shadow: 0 0 0 4px rgba(214, 234, 52, 0.06);
+  width: 100px;          /* keep or adjust */
+  height: 100px;         /* keep or adjust */
+  border-radius: 0;      /* was 50% (this makes the circle) */
+  overflow: visible;     /* was hidden (this crops into a circle) */
+  border: 0;             /* remove the circular border */
+  background: #000;      /* keep black behind the logo */
+  box-shadow: none;      /* remove ring glow */
   flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .brand-badge img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;   /* was cover (cover can crop the logo) */
+  border-radius: 0;
+  background: transparent;
 }
 
 .brand-text {
