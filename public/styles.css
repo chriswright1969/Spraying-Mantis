@@ -80,8 +80,8 @@ img {
 }
 
 .brand-badge {
-  width: 100px;          /* keep or adjust */
-  height: 100px;         /* keep or adjust */
+  width: 120px;          /* keep or adjust */
+  height: 120px;         /* keep or adjust */
   border-radius: 0;      /* was 50% (this makes the circle) */
   overflow: visible;     /* was hidden (this crops into a circle) */
   border: 0;             /* remove the circular border */
