@@ -271,6 +271,16 @@ app.post('/contact', async (req, res) => {
   const email = String(req.body?.email || '').trim();
   const message = String(req.body?.message || '').trim();
 
+  // Honeypot field: real users should never fill this in
+  const website = String(req.body?.website || '').trim();
+
+  const formData = { name, phone, email, message };
+
+  // Quietly ignore obvious bot submissions
+  if (website) {
+    return res.redirect('/?status=sent#contact');
+  }
+
   if (!name || !message || (!phone && !email)) {
     return res.status(400).render('index', {
       title: site.name,
@@ -281,7 +291,7 @@ app.post('/contact', async (req, res) => {
       galleryItems: getFeaturedGalleryItems(),
       reviews,
       notice: getNotice({ status: 'missing' }),
-      formData: { name, phone, email, message }
+      formData
     });
   }
 
@@ -311,7 +321,18 @@ app.post('/contact', async (req, res) => {
     return res.redirect('/?status=logged#contact');
   } catch (error) {
     console.error('Contact form send failed:', error);
-    return res.redirect('/?status=error#contact');
+
+    return res.status(500).render('index', {
+      title: site.name,
+      site,
+      services,
+      processSteps,
+      reasons,
+      galleryItems: getFeaturedGalleryItems(),
+      reviews,
+      notice: getNotice({ status: 'error' }),
+      formData
+    });
   }
 });
 
