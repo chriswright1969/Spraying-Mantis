@@ -108,21 +108,72 @@ const reasons = [
   'Needs some blurb for this bit'
 ];
 
-const galleryItems = [
+const allGalleryItems = [
   {
-    label: 'Repair example 1',
-    title: 'Bumper scuff repair',
-    text: 'Need a picture for here.'
+    thumb: '/public/gallery/repair-01-thumb.webp',
+    full: '/public/gallery/repair-01.webp',
+    title: 'Front bumper repair',
+    text: 'Repair and refinish after minor impact damage.',
+    alt: 'Front bumper repair and repaint',
+    featured: true
   },
   {
-    label: 'Repair example 2',
-    title: 'Panel respray & colour match',
-    text: 'Need a picture for here.'
+    thumb: '/public/gallery/repair-02-thumb.webp',
+    full: '/public/gallery/repair-02.webp',
+    title: 'Rear quarter panel repair',
+    text: 'Bodywork correction and paint finish.',
+    alt: 'Rear quarter panel repair',
+    featured: true
   },
   {
-    label: 'Repair example 3',
-    title: 'Van bodywork repair',
-    text: 'Need a picture for here.'
+    thumb: '/public/gallery/repair-03-thumb.webp',
+    full: '/public/gallery/repair-03.webp',
+    title: 'Scratch and scuff removal',
+    text: 'Colour-matched repair to damaged panel.',
+    alt: 'Scratch and scuff repair',
+    featured: true
+  },
+  {
+    thumb: '/public/gallery/repair-04-thumb.webp',
+    full: '/public/gallery/repair-04.webp',
+    title: 'Door repair',
+    text: 'Preparation, repair and repaint.',
+    alt: 'Vehicle door repair',
+    featured: true
+  },
+  {
+    thumb: '/public/gallery/repair-05-thumb.webp',
+    full: '/public/gallery/repair-05.webp',
+    title: 'Bumper corner damage',
+    text: 'Localised repair with refinishing.',
+    alt: 'Bumper corner body repair',
+    featured: true
+  },
+  {
+    thumb: '/public/gallery/repair-06-thumb.webp',
+    full: '/public/gallery/repair-06.webp',
+    title: 'Panel refinishing',
+    text: 'Restored finish after paint damage.',
+    alt: 'Vehicle panel refinishing',
+    featured: true
+  },
+
+  // Additional gallery-only examples
+  {
+    thumb: '/public/gallery/repair-07-thumb.webp',
+    full: '/public/gallery/repair-07.webp',
+    title: 'Bonnet paint repair',
+    text: 'Surface preparation and refinishing work.',
+    alt: 'Bonnet paint repair',
+    featured: false
+  },
+  {
+    thumb: '/public/gallery/repair-08-thumb.webp',
+    full: '/public/gallery/repair-08.webp',
+    title: 'Arch and sill repair',
+    text: 'Careful repair and finishing to lower bodywork.',
+    alt: 'Arch and sill repair',
+    featured: false
   }
 ];
 
@@ -170,14 +221,20 @@ function getNotice(query) {
   return null;
 }
 
+function getFeaturedGalleryItems() {
+  return allGalleryItems.filter(item => item.featured).slice(0, 6);
+}
+
 function renderHome(req, res, formData = {}) {
+  const site = getSite();
+
   return res.render('index', {
-    title: getSite().name,
-    site: getSite(),
+    title: site.name,
+    site,
     services,
     processSteps,
     reasons,
-    galleryItems,
+    galleryItems: getFeaturedGalleryItems(),
     reviews,
     notice: getNotice(req.query),
     formData
@@ -186,6 +243,16 @@ function renderHome(req, res, formData = {}) {
 
 app.get('/', (req, res) => {
   renderHome(req, res);
+});
+
+app.get('/gallery', (req, res) => {
+  const site = getSite();
+
+  return res.render('gallery', {
+    title: 'Gallery',
+    site,
+    galleryItems: allGalleryItems
+  });
 });
 
 app.post('/contact', async (req, res) => {
@@ -203,14 +270,13 @@ app.post('/contact', async (req, res) => {
       services,
       processSteps,
       reasons,
-      galleryItems,
+      galleryItems: getFeaturedGalleryItems(),
       reviews,
       notice: getNotice({ status: 'missing' }),
       formData: { name, phone, email, message }
     });
   }
 
-  // Keep your existing “log instead of fail” behaviour until SMTP is configured
   const smtpHost = env('SMTP_HOST');
   const smtpUser = env('SMTP_USER');
   const smtpPass = env('SMTP_PASS');
