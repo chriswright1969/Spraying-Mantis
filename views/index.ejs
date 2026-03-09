@@ -322,6 +322,18 @@
               <textarea id="message" name="message" placeholder="Tell us about the damage, your vehicle, and whether it is insurance or private work."><%= formData?.message || '' %></textarea>
             </div>
 
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Website</label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                value=""
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
             <div class="field-full">
               <button class="cta-btn" type="submit">Request estimate</button>
             </div>
