@@ -112,17 +112,17 @@ const allGalleryItems = [
   {
     thumb: '/public/gallery/repair-01-thumb.webp',
     full: '/public/gallery/repair-01.webp',
-    title: 'Front bumper repair',
+    title: 'Full Respray',
     text: 'Repair and refinish after minor impact damage.',
-    alt: 'Front bumper repair and repaint',
+    alt: 'Full Respray',
     featured: true
   },
   {
     thumb: '/public/gallery/repair-02-thumb.webp',
     full: '/public/gallery/repair-02.webp',
-    title: 'Rear quarter panel repair',
+    title: 'Front Wing Repair',
     text: 'Bodywork correction and paint finish.',
-    alt: 'Rear quarter panel repair',
+    alt: 'Front Wing Repair',
     featured: true
   },
   {
@@ -136,17 +136,17 @@ const allGalleryItems = [
   {
     thumb: '/public/gallery/repair-04-thumb.webp',
     full: '/public/gallery/repair-04.webp',
-    title: 'Door repair',
+    title: 'Drivers Side Repair',
     text: 'Preparation, repair and repaint.',
-    alt: 'Vehicle door repair',
+    alt: 'Drivers Side Repair',
     featured: true
   },
   {
     thumb: '/public/gallery/repair-05-thumb.webp',
     full: '/public/gallery/repair-05.webp',
-    title: 'Bumper corner damage',
+    title: 'Front Wing Damage',
     text: 'Localised repair with refinishing.',
-    alt: 'Bumper corner body repair',
+    alt: 'Front Wing Repair',
     featured: true
   },
   {
