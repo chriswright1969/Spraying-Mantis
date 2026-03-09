@@ -189,26 +189,46 @@
     </section>
 
     <section class="section alt" id="gallery">
-      <div class="container">
-        <div class="section-header">
-          <span>Gallery</span>
-          <h2>Add real before-and-after repairs here</h2>
-          <p>
-            These are placeholders for now. Once you have vehicle photos, this section can show actual photos of reapir jobs.
-          </p>
-        </div>
+  <div class="container">
+    <div class="section-header">
+      <span>Gallery</span>
+      <h2>Recent repair work</h2>
+      <p>
+        A selection of vehicle body repairs, paintwork and finishing work carried out by <%= site.name %>.
+      </p>
+    </div>
 
-        <div class="gallery-grid">
-          <% galleryItems.forEach(item => { %>
-            <article class="gallery-card">
-              <div class="gallery-image"><span><%= item.label %></span></div>
-              <h3><%= item.title %></h3>
-              <p><%= item.text %></p>
-            </article>
-          <% }) %>
-        </div>
-      </div>
-    </section>
+    <div class="gallery-grid">
+      <% galleryItems.forEach((item, i) => { %>
+        <article class="gallery-card">
+          <a
+            href="<%= item.full %>"
+            class="gallery-thumb"
+            data-lightbox="gallery"
+            data-full="<%= item.full %>"
+            data-alt="<%= item.alt || item.title %>"
+            data-title="<%= item.title || '' %>"
+          >
+            <img
+              src="<%= item.thumb %>"
+              alt="<%= item.alt || item.title %>"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+
+          <% if (item.title) { %>
+            <h3><%= item.title %></h3>
+          <% } %>
+
+          <% if (item.text) { %>
+            <p><%= item.text %></p>
+          <% } %>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
 
     <section class="section" id="reviews">
       <div class="container">
@@ -325,5 +345,51 @@
       </div>
     </div>
   </footer>
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" type="button" aria-label="Close image">×</button>
+  <div class="lightbox-inner">
+    <img id="lightbox-image" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const closeBtn = document.querySelector(".lightbox-close");
+    const triggers = document.querySelectorAll("[data-lightbox='gallery']");
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      lightboxImage.src = "";
+      lightboxImage.alt = "";
+      lightboxCaption.textContent = "";
+      document.body.classList.remove("lightbox-open");
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", function (e) {
+        e.preventDefault();
+        lightboxImage.src = this.dataset.full;
+        lightboxImage.alt = this.dataset.alt || "";
+        lightboxCaption.textContent = this.dataset.title || "";
+        lightbox.hidden = false;
+        document.body.classList.add("lightbox-open");
+      });
+    });
+
+    closeBtn.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+    });
+  })();
+</script>
 </body>
 </html>
