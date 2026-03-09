@@ -13,6 +13,12 @@ const app = express();
 app.set('trust proxy', 1);
 const PORT = Number(process.env.PORT || 3000);
 
+// Mail Helper
+function env(name, fallback = '') {
+  return String(process.env[name] || fallback).trim();
+}
+// End Mail Helper
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -255,6 +261,8 @@ app.get('/gallery', (req, res) => {
   });
 });
 
+app.use(express.urlencoded({ extended: true }));
+
 app.post('/contact', async (req, res) => {
   const site = getSite();
 
@@ -278,18 +286,27 @@ app.post('/contact', async (req, res) => {
   }
 
   const smtpHost = env('SMTP_HOST');
+  const smtpPort = env('SMTP_PORT');
   const smtpUser = env('SMTP_USER');
   const smtpPass = env('SMTP_PASS');
+  const mailTo = env('MAIL_TO') || env('FORM_RECIPIENT');
+  const mailFrom = env('MAIL_FROM') || env('SMTP_FROM') || env('SMTP_USER');
 
   try {
-    if (smtpHost && smtpUser && smtpPass) {
+    if (smtpHost && smtpPort && smtpUser && smtpPass && mailTo && mailFrom) {
       await sendContactMail({ name, phone, email, message });
       return res.redirect('/?status=sent#contact');
     }
 
-    console.log('--- Contact enquiry received (email not configured) ---');
-    console.log({ name, phone, email, message, receivedAt: new Date().toISOString() });
-    console.log('------------------------------------------------------');
+    console.log('--- Contact enquiry received (email not fully configured) ---');
+    console.log({
+      name,
+      phone,
+      email,
+      message,
+      receivedAt: new Date().toISOString()
+    });
+    console.log('-------------------------------------------------------------');
 
     return res.redirect('/?status=logged#contact');
   } catch (error) {
