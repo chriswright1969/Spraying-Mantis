@@ -58,13 +58,17 @@
         </div>
 
         <div class="gallery-grid">
-          <% galleryItems.forEach(item => { %>
+          <% galleryItems.forEach((item, i) => { %>
             <article class="gallery-card">
               <a
                 href="<%= item.full %>"
                 class="gallery-thumb"
-                target="_blank"
-                rel="noopener noreferrer"
+                data-lightbox="gallery"
+                data-index="<%= i %>"
+                data-full="<%= item.full %>"
+                data-alt="<%= item.alt || item.title %>"
+                data-title="<%= item.title || '' %>"
+                data-text="<%= item.text || '' %>"
                 aria-label="Open larger image: <%= item.title %>"
               >
                 <img
@@ -102,5 +106,87 @@
       </div>
     </div>
   </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" type="button" aria-label="Close image">×</button>
+
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">‹</button>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">›</button>
+
+    <div class="lightbox-inner">
+      <img id="lightbox-image" src="" alt="" />
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const closeBtn = document.querySelector(".lightbox-close");
+      const prevBtn = document.querySelector(".lightbox-prev");
+      const nextBtn = document.querySelector(".lightbox-next");
+      const triggers = Array.from(document.querySelectorAll("[data-lightbox='gallery']"));
+
+      let currentIndex = 0;
+
+      function renderImage(index) {
+        const item = triggers[index];
+        if (!item) return;
+
+        currentIndex = index;
+        lightboxImage.src = item.dataset.full || "";
+        lightboxImage.alt = item.dataset.alt || "";
+        lightboxCaption.textContent = item.dataset.title || "";
+
+        lightbox.hidden = false;
+        document.body.classList.add("lightbox-open");
+      }
+
+      function closeLightbox() {
+        lightbox.hidden = true;
+        lightboxImage.src = "";
+        lightboxImage.alt = "";
+        lightboxCaption.textContent = "";
+        document.body.classList.remove("lightbox-open");
+      }
+
+      function showNext() {
+        if (!triggers.length) return;
+        const nextIndex = (currentIndex + 1) % triggers.length;
+        renderImage(nextIndex);
+      }
+
+      function showPrev() {
+        if (!triggers.length) return;
+        const prevIndex = (currentIndex - 1 + triggers.length) % triggers.length;
+        renderImage(prevIndex);
+      }
+
+      triggers.forEach((trigger, index) => {
+        trigger.addEventListener("click", function (e) {
+          e.preventDefault();
+          renderImage(index);
+        });
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      nextBtn.addEventListener("click", showNext);
+      prevBtn.addEventListener("click", showPrev);
+
+      lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (lightbox.hidden) return;
+
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
+      });
+    })();
+  </script>
 </body>
 </html>
