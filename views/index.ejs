@@ -204,8 +204,10 @@
           <a
             href="<%= item.full %>"
             class="gallery-thumb"
-            target="_blank"
-            rel="noopener noreferrer"
+            data-lightbox="gallery"
+            data-full="<%= item.full %>"
+            data-alt="<%= item.alt || item.title %>"
+            data-title="<%= item.title %>"
             aria-label="Open larger image: <%= item.title %>"
           >
             <img
