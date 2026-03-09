@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> | <%= site.name %></title>
+  <meta
+    name="description"
+    content="Gallery of vehicle body repairs, paintwork and accident repair examples from <%= site.name %>."
+  />
+  <meta property="og:title" content="<%= site.name %> Gallery" />
+  <meta property="og:description" content="Examples of body repairs, paintwork and refinishing by <%= site.name %>." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= site.domain.replace(/\/$/, '') %>/gallery" />
+  <meta property="og:image" content="<%= site.domain.replace(/\/$/, '') + site.logo %>" />
+
+  <link rel="icon" type="image/png" href="/public/mantis-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/public/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="/" aria-label="<%= site.name %> home">
+        <span class="brand-badge">
+          <img src="/public/mantis-logo.png" alt="<%= site.name %> logo" />
+        </span>
+        <span class="brand-text">
+          <small>Vehicle bodyshop</small>
+          <strong><%= site.name %></strong>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="/#services">Services</a>
+        <a href="/#about">Why choose us</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/#reviews">Reviews</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+
+      <a class="cta-btn" href="/#contact">Get an estimate</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span>Gallery</span>
+          <h1>Examples of our repair work</h1>
+          <p>
+            Browse recent vehicle body repairs, paintwork and refinishing work completed by <%= site.name %>.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <% galleryItems.forEach(item => { %>
+            <article class="gallery-card">
+              <a
+                href="<%= item.full %>"
+                class="gallery-thumb"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open larger image: <%= item.title %>"
+              >
+                <img
+                  src="<%= item.thumb %>"
+                  alt="<%= item.alt || item.title %>"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+
+              <h3><%= item.title %></h3>
+              <p><%= item.text %></p>
+            </article>
+          <% }) %>
+        </div>
+
+        <div class="gallery-cta-row">
+          <a class="ghost-btn" href="/">Back to homepage</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>
+        <strong class="footer-title"><%= site.name %></strong>
+        <span> — accident repairs, paintwork and bodyshop services.</span>
+      </div>
+      <div class="footer-links">
+        <a href="/#services">Services</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/#reviews">Reviews</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
