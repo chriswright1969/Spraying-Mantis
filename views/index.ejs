@@ -188,26 +188,25 @@
       </div>
     </section>
 
-    <section class="section alt" id="gallery">
+   <section class="section alt" id="gallery">
   <div class="container">
     <div class="section-header">
       <span>Gallery</span>
-      <h2>Recent repair work</h2>
+      <h2>Examples of our repair work</h2>
       <p>
-        A selection of vehicle body repairs, paintwork and finishing work carried out by <%= site.name %>.
+        A small selection of recent vehicle body and paint repairs. View the full gallery for more examples.
       </p>
     </div>
 
     <div class="gallery-grid">
-      <% galleryItems.forEach((item, i) => { %>
+      <% galleryItems.forEach(item => { %>
         <article class="gallery-card">
           <a
             href="<%= item.full %>"
             class="gallery-thumb"
-            data-lightbox="gallery"
-            data-full="<%= item.full %>"
-            data-alt="<%= item.alt || item.title %>"
-            data-title="<%= item.title || '' %>"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open larger image: <%= item.title %>"
           >
             <img
               src="<%= item.thumb %>"
@@ -217,15 +216,14 @@
             />
           </a>
 
-          <% if (item.title) { %>
-            <h3><%= item.title %></h3>
-          <% } %>
-
-          <% if (item.text) { %>
-            <p><%= item.text %></p>
-          <% } %>
+          <h3><%= item.title %></h3>
+          <p><%= item.text %></p>
         </article>
       <% }) %>
+    </div>
+
+    <div class="gallery-cta-row">
+      <a class="cta-btn" href="/gallery">View full gallery</a>
     </div>
   </div>
 </section>
