@@ -735,6 +735,14 @@ textarea:focus {
   flex-wrap: wrap;
 }
 
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
 @media (max-width: 1080px) {
   .hero-grid,
   .about-grid,
