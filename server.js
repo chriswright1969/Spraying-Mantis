@@ -105,8 +105,7 @@ const reasons = [
   'New panels carefully prepared and refinished. Damaged panels removed and replaced with the new ensuring perfect panel alignment.',
   'Restoration bodywork for classic cars. Your precious classic is treated like one of our own.',
   'Larger panel damage is taken care of without a flinch. Count on us to restore larger panel damage to former glory.',
-  'We`re not  beyond taking on the odd jobs, small or large. If you have any unusual paint job requirements, get in touch - we like a challenge.',
-  'You might be surprised at the affordable rates for full vehicle respray. Pick your colour, or colours, and let us deliver quality full paint results.'
+  'We`re not  beyond taking on the odd jobs, small or large. If you have any unusual paint job requirements, get in touch - we like a challenge.'
 ];
 
 const allGalleryItems = [
