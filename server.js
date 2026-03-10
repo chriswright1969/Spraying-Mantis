@@ -148,7 +148,7 @@ const allGalleryItems = [
     title: 'Front Wing Damage',
     text: 'Localised repair with refinishing.',
     alt: 'Front Wing Repair',
-    featured: true
+    featured: false
   },
   {
     thumb: '/public/gallery/repair-06-thumb.webp',
@@ -156,7 +156,7 @@ const allGalleryItems = [
     title: 'Panel refinishing',
     text: 'Restored finish after paint damage.',
     alt: 'Vehicle panel refinishing',
-    featured: true
+    featured: false
   },
 
   // Additional gallery-only examples
