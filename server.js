@@ -142,6 +142,8 @@ const allGalleryItems = [
     alt: 'Drivers Side Repair',
     featured: true
   },
+
+  // Additional gallery-only examples
   {
     thumb: '/public/gallery/repair-05-thumb.webp',
     full: '/public/gallery/repair-05.webp',
@@ -159,7 +161,6 @@ const allGalleryItems = [
     featured: false
   },
 
-  // Additional gallery-only examples
   {
     thumb: '/public/gallery/repair-07-thumb.webp',
     full: '/public/gallery/repair-07.webp',
