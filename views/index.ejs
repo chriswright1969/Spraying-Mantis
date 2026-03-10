@@ -301,7 +301,7 @@
             </div>
           <% } %>
 
-          <form class="fake-form" action="/contact" method="post">
+          <form class="fake-form" action="/contact" method="post" autocomplete="off">
             <div class="field">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" placeholder="Your name" value="<%= formData?.name || '' %>" />
@@ -330,7 +330,7 @@
                 type="text"
                 value=""
                 tabindex="-1"
-                autocomplete="off"
+                autocomplete="new-password"
               />
             </div>
 
