@@ -100,12 +100,13 @@ const processSteps = [
 ];
 
 const reasons = [
-  'Mot welding work undertaken. Trusted by local MOT stations to deliver safe, strong welded solutions when vehicles fail MOT due to underbody corrosion.',
-  'Restoration and damage repair work requiring panel replacement. Quality Panels sourced for competitive prices. New panels carefully prepared and refinished. Damaged and rusted panels removed and replaced with the new, care is taken to ensure panel alignment.',
+  'Mot welding work undertaken. Trusted by local MOT stations to deliver safe, strong welded solutions.',
+  'Restoration and damage repair work requiring panel replacement. Quality Panels sourced for competitive prices.',
+  'New panels carefully prepared and refinished. Damaged panels removed and replaced with the new ensuring perfect panel alignment.',
   'Restoration bodywork for classic cars. Your precious classic is treated like one of our own.',
-  'Larger panel damage is taken care of without a flinch, count on us to restore larger panel damage to former glory.',
+  'Larger panel damage is taken care of without a flinch. Count on us to restore larger panel damage to former glory.',
   'We`re not  beyond taking on the odd jobs, small or large. If you have any unusual paint job requirements, get in touch - we like a challenge.',
-  'You might be surprised at the affordable rates for full vehicle respray. Pick your colour, or colours, and let us deliver award winning full paint results.'
+  'You might be surprised at the affordable rates for full vehicle respray. Pick your colour, or colours, and let us deliver quality full paint results.'
 ];
 
 const allGalleryItems = [
