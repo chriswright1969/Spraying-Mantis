@@ -13,12 +13,6 @@ const app = express();
 app.set('trust proxy', 1);
 const PORT = Number(process.env.PORT || 3000);
 
-// Mail Helper
-function env(name, fallback = '') {
-  return String(process.env[name] || fallback).trim();
-}
-// End Mail Helper
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
