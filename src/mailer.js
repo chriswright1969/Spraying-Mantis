@@ -33,11 +33,9 @@ export async function sendContactMail({ name, phone, email, message }) {
   if (!to) throw new Error("Missing MAIL_TO (or FORM_RECIPIENT)");
   if (!from) throw new Error("Missing MAIL_FROM (or SMTP_FROM)");
 
-  await transporter.verify();
-
   await transporter.sendMail({
     to,
-    from,
+    from: `"Spraying Mantis Website" <${from}>`,
     replyTo: email ? String(email).trim() : undefined,
     subject: `New website enquiry from ${name || "Unknown"}`,
     text: [
@@ -48,5 +46,13 @@ export async function sendContactMail({ name, phone, email, message }) {
       "Message:",
       message || "",
     ].join("\n"),
+    html: `
+      <h2>New website enquiry</h2>
+      <p><strong>Name:</strong> ${name || "Not provided"}</p>
+      <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
+      <p><strong>Email:</strong> ${email || "Not provided"}</p>
+      <p><strong>Message:</strong></p>
+      <p>${String(message || "").replace(/\n/g, "<br>")}</p>
+    `,
   });
 }
