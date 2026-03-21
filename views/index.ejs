@@ -1,382 +1,339 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Car Body Repairs in Ellesmere, Shropshire | Spraying Mantis Auto Repairs</title>
+<%
+  const metaTitle = "Car Body Repairs in Ellesmere, Shropshire | Spraying Mantis Auto Repairs";
+  const metaDescription =
+    "Spraying Mantis Auto Repairs provides car body repairs in Ellesmere, Shropshire, including accident repairs, bumper scuff removal, scratch repairs, paintwork and van body repairs. Free estimates.";
+  const ogTitle = site.name;
+  const ogDescription =
+    "Accident repairs, paintwork, bumper and scratch repair, panel refinishing and bodyshop services for cars and vans.";
+  const canonicalPath = "/";
+%>
 
-  <meta
-    name="description"
-    content="Spraying Mantis Auto Repairs provides car body repairs in Ellesmere, Shropshire, including accident repairs, bumper scuff removal, scratch repairs, paintwork and van body repairs. Free estimates."
-  />
-  <meta property="og:title" content="<%= site.name %>" />
-  <meta
-    property="og:description"
-    content="Accident repairs, paintwork, bumper and scratch repair, panel refinishing and bodyshop services for cars and vans."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="<%= site.domain %>" />
-  <meta property="og:image" content="<%= site.domain.replace(/\/$/, '') + site.logo %>" />
+<%- include("partials/head", {
+  site,
+  metaTitle,
+  metaDescription,
+  ogTitle,
+  ogDescription,
+  canonicalPath
+}) %>
 
-  <link rel="icon" type="image/png" href="/mantis-logo.png" />
+<%- include("partials/header", { site, isHome: true }) %>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-
-<body>
-  <header class="site-header">
-    <div class="container header-row">
-      <a class="brand" href="#top" aria-label="<%= site.name %> home">
-        <span class="brand-badge">
-          <!-- Header logo: mantis-logo.png in /public -->
-          <img src="/public/mantis-logo.png" alt="<%= site.name %> logo" />
-        </span>
-        <span class="brand-text">
-          <small>Vehicle bodyshop</small>
-          <strong><%= site.name %></strong>
-        </span>
-      </a>
-
-      <nav class="nav" aria-label="Main navigation">
-        <a href="#services">Services</a>
-        <a href="#about">Why choose us</a>
-        <a href="/gallery">Gallery</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <a class="cta-btn" href="#contact">Get an estimate</a>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">Accident repairs • Paintwork • Bodyshop</div>
-          <h1>Car body repairs in Ellesmere with a sharp eye for detail.</h1>
-          <p>
-            <%= site.name %> provides professional car body repairs in Ellesmere, 
-            Shropshire for cars, vans and light commercial vehicles. 
-            From accident damage and bumper scuffs to scratches, paintwork and panel repairs, 
-            we help local drivers get vehicles looking right again with honest advice, careful preparation and a tidy finish.
-          </p>
-          <p>Based in Ellesmere, we carry out private and commercial bodywork repairs for customers across the local area. 
-          Whether you have caught a gate post, picked up car park damage, scraped a bumper or need paintwork after a minor collision, 
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Accident repairs • Paintwork • Bodyshop</div>
+        <h1>Car body repairs in Ellesmere with a sharp eye for detail.</h1>
+        <p>
+          <%= site.name %> provides professional car body repairs in Ellesmere,
+          Shropshire for cars, vans and light commercial vehicles.
+          From accident damage and bumper scuffs to scratches, paintwork and panel repairs,
+          we help local drivers get vehicles looking right again with honest advice, careful preparation and a tidy finish.
+        </p>
+        <p>
+          Based in Ellesmere, we carry out private and commercial bodywork repairs for customers across the local area.
+          Whether you have caught a gate post, picked up car park damage, scraped a bumper or need paintwork after a minor collision,
           we offer straightforward advice and free estimates before any work begins.
-          </p>
-          <div class="hero-actions">
-            <a class="cta-btn" href="#contact">Book an estimate</a>
-            <a class="ghost-btn" href="tel:<%= site.phoneHref %>">Call <%= site.phone %></a>
-          </div>
+        </p>
 
-          <div class="hero-points">
-            <div class="point-card">
-              <strong>Cars & vans</strong>
-              <span>Private and commercial vehicle repair work welcome.</span>
-            </div>
-            <div class="point-card">
-              <strong>Free estimates</strong>
-              <span>Quick guidance on repair options and likely work needed.</span>
-            </div>
-            <div class="point-card">
-              <strong>Trusted finish</strong>
-              <span>Careful prep, paint and presentation from start to finish.</span>
-            </div>
-          </div>
+        <div class="hero-actions">
+          <a class="cta-btn" href="#contact">Book an estimate</a>
+          <a class="ghost-btn" href="tel:<%= site.phoneHref %>">Call <%= site.phone %></a>
         </div>
 
-        <aside class="hero-panel">
-          <div class="hero-panel-inner">
-            <div class="logo-stage">
-              <!-- Landing page large logo: keep using the existing main logo (logo2.png) -->
-              <img src="/public/logo2.png" alt="<%= site.name %> logo" />
-            </div>
-
-            <div class="contact-mini">
-              <div>
-                <span class="dot"></span>
-                <div>
-                  <strong>Phone</strong>
-                  <a href="tel:<%= site.phoneHref %>"><%= site.phone %></a>
-                </div>
-              </div>
-              <div>
-                <span class="dot"></span>
-                <div>
-                  <strong>Email</strong>
-                  <a href="mailto:<%= site.email %>"><%= site.email %></a>
-                </div>
-              </div>
-              <div>
-                <span class="dot"></span>
-                <div>
-                  <strong>Instagram</strong>
-                  <a href="<%= site.instagramUrl %>" target="_blank" rel="noopener noreferrer"><%= site.instagramHandle %></a>
-                </div>
-              </div>
-              <div>
-                <span class="dot"></span>
-                <div>
-                  <strong>Coverage</strong>
-                  <span><%= site.coverageArea %></span>
-                </div>
-              </div>
-            </div>
+        <div class="hero-points">
+          <div class="point-card">
+            <strong>Cars &amp; vans</strong>
+            <span>Private and commercial vehicle repair work welcome.</span>
           </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-header">
-          <span>Our services</span>
-          <h2>Vehicle bodyshop services in Ellesmere and surrounding areas</h2>
-          <p>
-            We offer a wide range of vehicle bodyshop services for customers in Ellesmere and nearby areas, including:
-            <ul>
-            <li>Accident repairs</li>
-            <li>Bumper scuff and scratch repair</li>
-            <li>Panel repair and refinishing</li>
-            <li>Paintwork and panel resprays</li>
-            <li>Dent and cosmetic bodywork correction</li>
-            <li>Insurance and private repair work</li>
-            <li>Van and light commercial vehicle body repairs</li>
-            </ul>
-          </p>
-          <p>Every job is assessed on its own merits. 
-            Some repairs need a small localised correction, while others need panel work, preparation and full refinishing. 
-            Our aim is always the same: a repair that looks right, lasts well and restores the appearance of your vehicle.
-          </p>
-        </div>
-
-        <div class="card-grid">
-          <% services.forEach(service => { %>
-            <article class="card">
-              <div class="icon-chip">✦</div>
-              <h3><%= service.title %></h3>
-              <p><%= service.text %></p>
-            </article>
-          <% }) %>
+          <div class="point-card">
+            <strong>Free estimates</strong>
+            <span>Quick guidance on repair options and likely work needed.</span>
+          </div>
+          <div class="point-card">
+            <strong>Trusted finish</strong>
+            <span>Careful prep, paint and presentation from start to finish.</span>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section class="section alt" id="about">
-      <div class="container about-grid">
-        <div class="section-header no-bottom-gap">
-          <span>Why choose us</span>
-          <h2>A local independent repair specialist with a standout reputation</h2>
-          <p>
-            From MOT welding work, to full panel replacement. From classic car restoration to full resprays. From large damage repairs to minor scuffs. 
-            Spraying Mantis Auto Repairs are your local independent specialist who you can trust to get your vehicle loking sharp and road ready again.
-          </p>
+      <aside class="hero-panel">
+        <div class="hero-panel-inner">
+          <div class="logo-stage">
+            <img src="/logo2.png" alt="<%= site.name %> logo" />
+          </div>
+
+          <div class="contact-mini">
+            <div>
+              <span class="dot"></span>
+              <div>
+                <strong>Phone</strong>
+                <a href="tel:<%= site.phoneHref %>"><%= site.phone %></a>
+              </div>
+            </div>
+
+            <div>
+              <span class="dot"></span>
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:<%= site.email %>"><%= site.email %></a>
+              </div>
+            </div>
+
+            <div>
+              <span class="dot"></span>
+              <div>
+                <strong>Instagram</strong>
+                <a href="<%= site.instagramUrl %>" target="_blank" rel="noopener noreferrer"><%= site.instagramHandle %></a>
+              </div>
+            </div>
+
+            <div>
+              <span class="dot"></span>
+              <div>
+                <strong>Coverage</strong>
+                <span><%= site.coverageArea %></span>
+              </div>
+            </div>
+          </div>
         </div>
+      </aside>
+    </div>
+  </section>
 
-        <ul class="check-list">
-          <% reasons.forEach(reason => { %>
-            <li><span class="tick">✓</span><span><%= reason %></span></li>
-          <% }) %>
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span>Our services</span>
+        <h2>Vehicle bodyshop services in Ellesmere and surrounding areas</h2>
+        <p>
+          We offer a wide range of vehicle bodyshop services for customers in Ellesmere and nearby areas, including:
+        </p>
+        <ul>
+          <li>Accident repairs</li>
+          <li>Bumper scuff and scratch repair</li>
+          <li>Panel repair and refinishing</li>
+          <li>Paintwork and panel resprays</li>
+          <li>Dent and cosmetic bodywork correction</li>
+          <li>Insurance and private repair work</li>
+          <li>Van and light commercial vehicle body repairs</li>
         </ul>
+        <p>
+          Every job is assessed on its own merits. Some repairs need a small localised correction, while others need panel work,
+          preparation and full refinishing. Our aim is always the same: a repair that looks right, lasts well and restores the appearance
+          of your vehicle.
+        </p>
       </div>
-    </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span>How it works</span>
-          <h2>A simple path from damaged vehicle to finished repair</h2>
-          <p>Useful for reassuring first-time visitors and making the process feel straightforward.</p>
-        </div>
-
-        <div class="steps-grid">
-          <% processSteps.forEach(step => { %>
-            <article class="step">
-              <span class="step-no"><%= step.no %></span>
-              <h3><%= step.title %></h3>
-              <p><%= step.text %></p>
-            </article>
-          <% }) %>
-        </div>
+      <div class="card-grid">
+        <% services.forEach(service => { %>
+          <article class="card">
+            <div class="icon-chip">✦</div>
+            <h3><%= service.title %></h3>
+            <p><%= service.text %></p>
+          </article>
+        <% }) %>
       </div>
-    </section>
-
-   <section class="section alt" id="gallery">
-  <div class="container">
-    <div class="section-header">
-      <span>Gallery</span>
-      <h2>Examples of our repair work</h2>
-      <p>
-        A small selection of recent vehicle body and paint repairs. View the full gallery for more examples.
-      </p>
     </div>
+  </section>
 
-    <div class="gallery-grid">
-      <% galleryItems.forEach(item => { %>
-        <article class="gallery-card">
-          <a
-            href="<%= item.full %>"
-            class="gallery-thumb"
-            data-lightbox="gallery"
-            data-full="<%= item.full %>"
-            data-alt="<%= item.alt || item.title %>"
-            data-title="<%= item.title %>"
-            aria-label="Open larger image: <%= item.title %>"
-          >
-            <img
-              src="<%= item.thumb %>"
-              alt="<%= item.alt || item.title %>"
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
-
-          <h3><%= item.title %></h3>
-          <p><%= item.text %></p>
-        </article>
-      <% }) %>
-    </div>
-
-    <div class="gallery-cta-row">
-      <a class="cta-btn" href="/gallery">View full gallery</a>
-    </div>
-  </div>
-</section>
-
-    <section class="section" id="reviews">
-      <div class="container">
-        <div class="section-header">
-          <span>Customer reviews</span>
-          <h2>Spraying Mantis customer feedback</h2>
-          <p>Customer feedback for works completed by Spraying Mantis Auto Repairs</p>
-        </div>
-
-        <div class="review-grid">
-          <% reviews.forEach(review => { %>
-            <article class="review">
-              <div class="stars">★★★★★</div>
-              <p><%= review.text %></p>
-              <h3><%= review.name %></h3>
-            </article>
-          <% }) %>
-        </div>
+  <section class="section alt" id="about">
+    <div class="container about-grid">
+      <div class="section-header no-bottom-gap">
+        <span>Why choose us</span>
+        <h2>A local independent repair specialist with a standout reputation</h2>
+        <p>
+          From MOT welding work, to full panel replacement. From classic car restoration to full resprays. From large damage repairs to minor scuffs.
+          Spraying Mantis Auto Repairs are your local independent specialist who you can trust to get your vehicle looking sharp and road ready again.
+        </p>
       </div>
-    </section>
 
-    <section class="section" id="contact">
-      <div class="container contact-wrap">
-        <div class="contact-card">
-          <div class="section-header no-bottom-gap">
-            <span>Contact us</span>
-            <h2>Need a quote for vehicle body repairs?</h2>
-            <p>
-              Professional bodywork starts with a call. Your repair starts here.
-            </p>
-          </div>
+      <ul class="check-list">
+        <% reasons.forEach(reason => { %>
+          <li><span class="tick">✓</span><span><%= reason %></span></li>
+        <% }) %>
+      </ul>
+    </div>
+  </section>
 
-          <div class="contact-list">
-            <div>
-              <strong>Phone</strong>
-              <a href="tel:<%= site.phoneHref %>"><%= site.phone %></a>
-            </div>
-            <div>
-              <strong>Email</strong>
-              <a href="mailto:<%= site.email %>"><%= site.email %></a>
-            </div>
-            <div>
-              <strong>Instagram</strong>
-              <a href="<%= site.instagramUrl %>" target="_blank" rel="noopener noreferrer"><%= site.instagramHandle %></a>
-            </div>
-            <div>
-              <strong>Coverage</strong>
-              <span><%= site.coverageArea %></span>
-            </div>
-            <div>
-              <strong>Address</strong>
-              <span><%= site.addressLine1 %><br /><%= site.addressLine2 %><br /><%= site.addressLine3 %></span>
-            </div>
-            <div>
-              <strong>Opening hours</strong>
-              <span><%= site.openingHours %></span>
-            </div>
-          </div>
-        </div>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span>How it works</span>
+        <h2>A simple path from damaged vehicle to finished repair</h2>
+        <p>Useful for reassuring first-time visitors and making the process feel straightforward.</p>
+      </div>
 
-        <div class="contact-card">
-          <h3>Request an estimate</h3>
-          <p>
-            Send us a few details and we'll get back to you with an estimate.
-          </p>
+      <div class="steps-grid">
+        <% processSteps.forEach(step => { %>
+          <article class="step">
+            <span class="step-no"><%= step.no %></span>
+            <h3><%= step.title %></h3>
+            <p><%= step.text %></p>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
 
-          <% if (notice) { %>
-            <div class="notice <%= notice.type === 'error' ? 'notice-error' : 'notice-success' %>">
-              <%= notice.text %>
-            </div>
-          <% } %>
+  <section class="section alt" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span>Gallery</span>
+        <h2>Examples of our repair work</h2>
+        <p>
+          A small selection of recent vehicle body and paint repairs. View the full gallery for more examples.
+        </p>
+      </div>
 
-          <form class="fake-form" action="/contact" method="post" autocomplete="off">
-            <div class="field">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" value="<%= formData?.name || '' %>" />
-            </div>
-
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="text" placeholder="Your phone number" value="<%= formData?.phone || '' %>" />
-            </div>
-
-            <div class="field-full">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="Your email address" value="<%= formData?.email || '' %>" />
-            </div>
-
-            <div class="field-full">
-              <label for="message">What needs repairing?</label>
-              <textarea id="message" name="message" placeholder="Tell us about the damage, your vehicle, and whether it is insurance or private work."><%= formData?.message || '' %></textarea>
-            </div>
-
-            <div class="hp-field" aria-hidden="true">
-              <label for="website">Website</label>
-              <input
-                id="website"
-                name="website"
-                type="text"
-                value=""
-                tabindex="-1"
-                autocomplete="new-password"
+      <div class="gallery-grid">
+        <% galleryItems.forEach(item => { %>
+          <article class="gallery-card">
+            <a
+              href="<%= item.full %>"
+              class="gallery-thumb"
+              data-lightbox="gallery"
+              data-full="<%= item.full %>"
+              data-alt="<%= item.alt || item.title %>"
+              data-title="<%= item.title %>"
+              aria-label="Open larger image: <%= item.title %>"
+            >
+              <img
+                src="<%= item.thumb %>"
+                alt="<%= item.alt || item.title %>"
+                loading="lazy"
+                decoding="async"
               />
-            </div>
+            </a>
 
-            <div class="field-full">
-              <button class="cta-btn" type="submit">Request estimate</button>
-            </div>
-          </form>
-        </div>
+            <h3><%= item.title %></h3>
+            <p><%= item.text %></p>
+          </article>
+        <% }) %>
       </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <div>
-        <strong class="footer-title"><%= site.name %></strong>
-        <span> — accident repairs, paintwork and bodyshop services.</span>
-      </div>
-      <div class="footer-links">
-        <a href="#services">Services</a>
-        <a href="/gallery">Gallery</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
+      <div class="gallery-cta-row">
+        <a class="cta-btn" href="/gallery">View full gallery</a>
       </div>
     </div>
-  </footer>
+  </section>
+
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span>Customer reviews</span>
+        <h2>Spraying Mantis customer feedback</h2>
+        <p>Customer feedback for works completed by Spraying Mantis Auto Repairs</p>
+      </div>
+
+      <div class="review-grid">
+        <% reviews.forEach(review => { %>
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p><%= review.text %></p>
+            <h3><%= review.name %></h3>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container contact-wrap">
+      <div class="contact-card">
+        <div class="section-header no-bottom-gap">
+          <span>Contact us</span>
+          <h2>Need a quote for vehicle body repairs?</h2>
+          <p>
+            Professional bodywork starts with a call. Your repair starts here.
+          </p>
+        </div>
+
+        <div class="contact-list">
+          <div>
+            <strong>Phone</strong>
+            <a href="tel:<%= site.phoneHref %>"><%= site.phone %></a>
+          </div>
+          <div>
+            <strong>Email</strong>
+            <a href="mailto:<%= site.email %>"><%= site.email %></a>
+          </div>
+          <div>
+            <strong>Instagram</strong>
+            <a href="<%= site.instagramUrl %>" target="_blank" rel="noopener noreferrer"><%= site.instagramHandle %></a>
+          </div>
+          <div>
+            <strong>Coverage</strong>
+            <span><%= site.coverageArea %></span>
+          </div>
+          <div>
+            <strong>Address</strong>
+            <span><%= site.addressLine1 %><br /><%= site.addressLine2 %><br /><%= site.addressLine3 %></span>
+          </div>
+          <div>
+            <strong>Opening hours</strong>
+            <span><%= site.openingHours %></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <h3>Request an estimate</h3>
+        <p>
+          Send us a few details and we'll get back to you with an estimate.
+        </p>
+
+        <% if (notice) { %>
+          <div class="notice <%= notice.type === 'error' ? 'notice-error' : 'notice-success' %>">
+            <%= notice.text %>
+          </div>
+        <% } %>
+
+        <form class="fake-form" action="/contact" method="post" autocomplete="off">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" value="<%= formData?.name || '' %>" />
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="text" placeholder="Your phone number" value="<%= formData?.phone || '' %>" />
+          </div>
+
+          <div class="field-full">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="Your email address" value="<%= formData?.email || '' %>" />
+          </div>
+
+          <div class="field-full">
+            <label for="message">What needs repairing?</label>
+            <textarea id="message" name="message" placeholder="Tell us about the damage, your vehicle, and whether it is insurance or private work."><%= formData?.message || '' %></textarea>
+          </div>
+
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              value=""
+              tabindex="-1"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <div class="field-full">
+            <button class="cta-btn" type="submit">Request estimate</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include("partials/footer", { site, isHome: true }) %>
+
 <div class="lightbox" id="lightbox" hidden>
   <button class="lightbox-close" type="button" aria-label="Close image">×</button>
   <div class="lightbox-inner">
