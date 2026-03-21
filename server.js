@@ -41,8 +41,9 @@ function getSite() {
     instagramHandle: env('INSTAGRAM_HANDLE', '@sprayingmantisautos'),
     domain: env('DOMAIN', 'https://sprayingmantis.co.uk'),
     coverageArea: env('COVERAGE_AREA', 'Ellesmere, Shropshire and surrounding areas'),
-    addressLine1: env('ADDRESS_LINE_1', 'Unit 1, Example Trade Estate'),
-    addressLine2: env('ADDRESS_LINE_2', 'Ellesmere, SY12 0AA'),
+    addressLine1: env('ADDRESS_LINE_1', 'Unit 7, Trench Farm'),
+    addressLine1: env('ADDRESS_LINE_1', 'The Trench'),
+    addressLine2: env('ADDRESS_LINE_3', 'Ellesmere, SY12 0LR'),
     openingHours: env('OPENING_HOURS', 'Mon-Fri 8:00am-5:00pm'),
     logo: env('DEFAULT_LOGO', '/public/logo2.png'),
     formRecipient: env('FORM_RECIPIENT', email)
