@@ -1,22 +1,31 @@
 <%
-  const s = site || {};
+  const s = typeof site !== "undefined" && site ? site : {};
   const siteName = String(s.name || "Spraying Mantis Auto Repairs").trim();
   const siteDomain = String(s.domain || "").replace(/\/$/, "");
 
-  const resolvedTitle = metaTitle || title || siteName;
+  const hasTitle = typeof title !== "undefined" && title;
+  const hasMetaTitle = typeof metaTitle !== "undefined" && metaTitle;
+  const hasMetaDescription = typeof metaDescription !== "undefined" && metaDescription;
+  const hasOgTitle = typeof ogTitle !== "undefined" && ogTitle;
+  const hasOgDescription = typeof ogDescription !== "undefined" && ogDescription;
+  const hasCanonicalPath = typeof canonicalPath !== "undefined" && canonicalPath;
+  const hasCanonicalUrl = typeof canonicalUrl !== "undefined" && canonicalUrl;
+  const hasOgImage = typeof ogImage !== "undefined" && ogImage;
+
+  const resolvedTitle = hasMetaTitle || hasTitle || siteName;
   const resolvedDescription =
-    metaDescription ||
+    hasMetaDescription ||
     `Vehicle body repairs, paintwork and accident repair services from ${siteName}.`;
 
-  const resolvedOgTitle = ogTitle || resolvedTitle;
-  const resolvedOgDescription = ogDescription || resolvedDescription;
+  const resolvedOgTitle = hasOgTitle || resolvedTitle;
+  const resolvedOgDescription = hasOgDescription || resolvedDescription;
 
-  const resolvedCanonicalPath = canonicalPath || "";
+  const resolvedCanonicalPath = hasCanonicalPath || "";
   const resolvedCanonicalUrl =
-    canonicalUrl || (siteDomain && resolvedCanonicalPath ? `${siteDomain}${resolvedCanonicalPath}` : siteDomain);
+    hasCanonicalUrl || (siteDomain ? `${siteDomain}${resolvedCanonicalPath}` : "");
 
   const resolvedOgImage =
-    ogImage ||
+    hasOgImage ||
     (siteDomain
       ? `${siteDomain}${s.logo || "/mantis-logo.png"}`
       : (s.logo || "/mantis-logo.png"));
@@ -28,19 +37,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title><%= resolvedTitle %></title>
-
   <meta name="description" content="<%= resolvedDescription %>" />
 
   <% if (resolvedCanonicalUrl) { %>
     <link rel="canonical" href="<%= resolvedCanonicalUrl %>" />
+    <meta property="og:url" content="<%= resolvedCanonicalUrl %>" />
   <% } %>
 
   <meta property="og:title" content="<%= resolvedOgTitle %>" />
   <meta property="og:description" content="<%= resolvedOgDescription %>" />
   <meta property="og:type" content="website" />
-  <% if (resolvedCanonicalUrl) { %>
-    <meta property="og:url" content="<%= resolvedCanonicalUrl %>" />
-  <% } %>
   <meta property="og:image" content="<%= resolvedOgImage %>" />
 
   <link rel="icon" type="image/png" href="/mantis-logo.png" />
