@@ -1,0 +1,31 @@
+<%
+  const s = site || {};
+  const siteName = String(s.name || "Spraying Mantis Auto Repairs").trim();
+  const navBase = isHome ? "" : "/";
+  const brandHref = isHome ? "#top" : "/";
+  const estimateHref = isHome ? "#contact" : "/#contact";
+%>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a class="brand" href="<%= brandHref %>" aria-label="<%= siteName %> home">
+      <span class="brand-badge">
+        <img src="/mantis-logo.png" alt="<%= siteName %> logo" />
+      </span>
+      <span class="brand-text">
+        <small>Vehicle bodyshop</small>
+        <strong><%= siteName %></strong>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="<%= navBase %>#services">Services</a>
+      <a href="<%= navBase %>#about">Why choose us</a>
+      <a href="/gallery">Gallery</a>
+      <a href="<%= navBase %>#reviews">Reviews</a>
+      <a href="<%= navBase %>#contact">Contact</a>
+    </nav>
+
+    <a class="cta-btn" href="<%= estimateHref %>">Get an estimate</a>
+  </div>
+</header>
