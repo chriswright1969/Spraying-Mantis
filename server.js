@@ -42,7 +42,7 @@ function getSite() {
     domain: env('DOMAIN', 'https://sprayingmantis.co.uk'),
     coverageArea: env('COVERAGE_AREA', 'Ellesmere, Shropshire and surrounding areas'),
     addressLine1: env('ADDRESS_LINE_1', 'Unit 7, Trench Farm'),
-    addressLine2: env('ADDRESS_LINE_1', 'The Trench'),
+    addressLine2: env('ADDRESS_LINE_2', 'The Trench'),
     addressLine3: env('ADDRESS_LINE_3', 'Ellesmere, SY12 0LR'),
     openingHours: env('OPENING_HOURS', 'Mon-Fri 8:00am-5:00pm'),
     logo: env('DEFAULT_LOGO', '/public/logo2.png'),
