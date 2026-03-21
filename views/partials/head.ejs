@@ -1,0 +1,56 @@
+<%
+  const s = site || {};
+  const siteName = String(s.name || "Spraying Mantis Auto Repairs").trim();
+  const siteDomain = String(s.domain || "").replace(/\/$/, "");
+
+  const resolvedTitle = metaTitle || title || siteName;
+  const resolvedDescription =
+    metaDescription ||
+    `Vehicle body repairs, paintwork and accident repair services from ${siteName}.`;
+
+  const resolvedOgTitle = ogTitle || resolvedTitle;
+  const resolvedOgDescription = ogDescription || resolvedDescription;
+
+  const resolvedCanonicalPath = canonicalPath || "";
+  const resolvedCanonicalUrl =
+    canonicalUrl || (siteDomain && resolvedCanonicalPath ? `${siteDomain}${resolvedCanonicalPath}` : siteDomain);
+
+  const resolvedOgImage =
+    ogImage ||
+    (siteDomain
+      ? `${siteDomain}${s.logo || "/mantis-logo.png"}`
+      : (s.logo || "/mantis-logo.png"));
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title><%= resolvedTitle %></title>
+
+  <meta name="description" content="<%= resolvedDescription %>" />
+
+  <% if (resolvedCanonicalUrl) { %>
+    <link rel="canonical" href="<%= resolvedCanonicalUrl %>" />
+  <% } %>
+
+  <meta property="og:title" content="<%= resolvedOgTitle %>" />
+  <meta property="og:description" content="<%= resolvedOgDescription %>" />
+  <meta property="og:type" content="website" />
+  <% if (resolvedCanonicalUrl) { %>
+    <meta property="og:url" content="<%= resolvedCanonicalUrl %>" />
+  <% } %>
+  <meta property="og:image" content="<%= resolvedOgImage %>" />
+
+  <link rel="icon" type="image/png" href="/mantis-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
