@@ -22,8 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Keep old /public URLs working
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-app.use(express.urlencoded({ extended: true }));
-
 function env(name, fallback = '') {
   return String(process.env[name] || fallback).trim();
 }
@@ -107,15 +105,13 @@ app.get("/sitemap.xml", (req, res) => {
   // Add every public page you want Google to index here.
   // Do NOT include admin, login, upload, or private routes.
   const pages = [
-    { loc: "/", changefreq: "weekly", priority: "1.0" },
-    { loc: "/gallery", changefreq: "weekly", priority: "0.8" },
-
-    // Add these only if they are real public routes on your site:
-    // { loc: "/about", changefreq: "monthly", priority: "0.7" },
-    // { loc: "/services", changefreq: "weekly", priority: "0.8" },
-    // { loc: "/faq", changefreq: "monthly", priority: "0.6" },
-    // { loc: "/contact", changefreq: "monthly", priority: "0.7" },
-  ];
+  { loc: "/", changefreq: "weekly", priority: "1.0" },
+  { loc: "/gallery", changefreq: "weekly", priority: "0.8" },
+  { loc: "/bumper-scratch-repair-ellesmere", changefreq: "monthly", priority: "0.8" },
+  { loc: "/van-body-repairs-ellesmere", changefreq: "monthly", priority: "0.8" },
+  { loc: "/car-body-repairs-whitchurch", changefreq: "monthly", priority: "0.8" },
+  { loc: "/accident-repairs-oswestry", changefreq: "monthly", priority: "0.8" },
+];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -339,6 +335,39 @@ app.get('/gallery', (req, res) => {
     title: 'Gallery',
     site,
     galleryItems: allGalleryItems
+  });
+});
+
+// specific local area page routes
+app.get('/bumper-scratch-repair-ellesmere', (req, res) => {
+  const site = getSite();
+
+  return res.render('bumper-scratch-repair-ellesmere', {
+    site
+  });
+});
+
+app.get('/van-body-repairs-ellesmere', (req, res) => {
+  const site = getSite();
+
+  return res.render('van-body-repairs-ellesmere', {
+    site
+  });
+});
+
+app.get('/car-body-repairs-whitchurch', (req, res) => {
+  const site = getSite();
+
+  return res.render('car-body-repairs-whitchurch', {
+    site
+  });
+});
+
+app.get('/accident-repairs-oswestry', (req, res) => {
+  const site = getSite();
+
+  return res.render('accident-repairs-oswestry', {
+    site
   });
 });
 
