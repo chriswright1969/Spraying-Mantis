@@ -181,15 +181,15 @@ const allGalleryItems = [
 
 const reviews = [
   {
-    name: 'B. Swollocks',
+    name: 'A.Johnson',
     text: 'Excellent repair and a really tidy finish. Friendly communication throughout and very professional.'
   },
   {
-    name: 'B. Dover',
+    name: 'M.Hancock',
     text: 'Brilliant result after accident damage. Paint match looked spot on and the vehicle came back looking superb.'
   },
   {
-    name: 'Al Colick',
+    name: 'C.Edwards',
     text: 'Quick estimate, honest advice and a high-quality job. Would happily recommend Spraying Mantis Auto Repairs.'
   }
 ];
