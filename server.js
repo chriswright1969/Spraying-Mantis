@@ -56,6 +56,13 @@ function getSite() {
 }
 
 // --------------------
+// favicon
+// --------------------
+app.get('/favicon.ico', (req, res) => {
+  return res.redirect(302, '/mantis-logo.png');
+});
+
+// --------------------
 // robots.txt + sitemap.xml
 // --------------------
 const normaliseBaseUrl = (req) => {
