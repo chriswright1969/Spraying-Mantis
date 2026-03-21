@@ -1,0 +1,20 @@
+<%
+  const s = site || {};
+  const siteName = String(s.name || "Spraying Mantis Auto Repairs").trim();
+  const navBase = isHome ? "" : "/";
+%>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <div>
+      <strong class="footer-title"><%= siteName %></strong>
+      <span> — accident repairs, paintwork and bodyshop services.</span>
+    </div>
+    <div class="footer-links">
+      <a href="<%= navBase %>#services">Services</a>
+      <a href="/gallery">Gallery</a>
+      <a href="<%= navBase %>#reviews">Reviews</a>
+      <a href="<%= navBase %>#contact">Contact</a>
+    </div>
+  </div>
+</footer>
