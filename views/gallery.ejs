@@ -1,198 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= title %> | <%= site.name %></title>
+<%
+  const metaTitle = `${title} | ${site.name}`;
+  const metaDescription = `Gallery of vehicle body repairs, paintwork and accident repair examples from ${site.name}.`;
+  const ogTitle = `${site.name} Gallery`;
+  const ogDescription = `Examples of body repairs, paintwork and refinishing by ${site.name}.`;
+  const canonicalPath = "/gallery";
+%>
 
-  <meta
-    name="description"
-    content="Gallery of vehicle body repairs, paintwork and accident repair examples from <%= site.name %>."
-  />
-  <meta property="og:title" content="<%= site.name %> Gallery" />
-  <meta
-    property="og:description"
-    content="Examples of body repairs, paintwork and refinishing by <%= site.name %>."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="<%= site.domain.replace(/\/$/, '') %>/gallery" />
-  <meta property="og:image" content="<%= site.domain.replace(/\/$/, '') + site.logo %>" />
+<%- include("partials/head", {
+  site,
+  metaTitle,
+  metaDescription,
+  ogTitle,
+  ogDescription,
+  canonicalPath
+}) %>
 
-  <link rel="icon" type="image/png" href="/mantis-logo.png" />
+<%- include("partials/header", { site, isHome: false }) %>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-
-<body>
-  <header class="site-header">
-    <div class="container header-row">
-      <a class="brand" href="/" aria-label="<%= site.name %> home">
-        <span class="brand-badge">
-          <img src="/public/mantis-logo.png" alt="<%= site.name %> logo" />
-        </span>
-        <span class="brand-text">
-          <small>Vehicle bodyshop</small>
-          <strong><%= site.name %></strong>
-        </span>
-      </a>
-
-      <nav class="nav" aria-label="Main navigation">
-        <a href="/#services">Services</a>
-        <a href="/#about">Why choose us</a>
-        <a href="/gallery">Gallery</a>
-        <a href="/#reviews">Reviews</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-
-      <a class="cta-btn" href="/#contact">Get an estimate</a>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="section alt">
-      <div class="container">
-        <div class="section-header">
-          <span>Gallery</span>
-          <h2>Examples of our repair work</h2>
-          <p>
-            Browse recent vehicle body repairs, paintwork and refinishing work completed by <%= site.name %>.
-          </p>
-        </div>
-
-        <div class="gallery-grid">
-          <% galleryItems.forEach((item, i) => { %>
-            <article class="gallery-card">
-              <a
-                href="<%= item.full %>"
-                class="gallery-thumb"
-                data-lightbox="gallery"
-                data-index="<%= i %>"
-                data-full="<%= item.full %>"
-                data-alt="<%= item.alt || item.title %>"
-                data-title="<%= item.title || '' %>"
-                data-text="<%= item.text || '' %>"
-                aria-label="Open larger image: <%= item.title %>"
-              >
-                <img
-                  src="<%= item.thumb %>"
-                  alt="<%= item.alt || item.title %>"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </a>
-
-              <h3><%= item.title %></h3>
-              <p><%= item.text %></p>
-            </article>
-          <% }) %>
-        </div>
-
-        <div class="gallery-cta-row">
-          <a class="ghost-btn" href="/">Back to homepage</a>
-        </div>
+<main id="top">
+  <section class="section alt">
+    <div class="container">
+      <div class="section-header">
+        <span>Gallery</span>
+        <h2>Examples of our repair work</h2>
+        <p>
+          Browse recent vehicle body repairs, paintwork and refinishing work completed by <%= site.name %>.
+        </p>
       </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <div>
-        <strong class="footer-title"><%= site.name %></strong>
-        <span> — accident repairs, paintwork and bodyshop services.</span>
+      <div class="gallery-grid">
+        <% galleryItems.forEach((item, i) => { %>
+          <article class="gallery-card">
+            <a
+              href="<%= item.full %>"
+              class="gallery-thumb"
+              data-lightbox="gallery"
+              data-index="<%= i %>"
+              data-full="<%= item.full %>"
+              data-alt="<%= item.alt || item.title %>"
+              data-title="<%= item.title || '' %>"
+              data-text="<%= item.text || '' %>"
+              aria-label="Open larger image: <%= item.title %>"
+            >
+              <img
+                src="<%= item.thumb %>"
+                alt="<%= item.alt || item.title %>"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+
+            <h3><%= item.title %></h3>
+            <p><%= item.text %></p>
+          </article>
+        <% }) %>
       </div>
-      <div class="footer-links">
-        <a href="/#services">Services</a>
-        <a href="/gallery">Gallery</a>
-        <a href="/#reviews">Reviews</a>
-        <a href="/#contact">Contact</a>
+
+      <div class="gallery-cta-row">
+        <a class="ghost-btn" href="/">Back to homepage</a>
       </div>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <div class="lightbox" id="lightbox" hidden>
-    <button class="lightbox-close" type="button" aria-label="Close image">×</button>
+<%- include("partials/footer", { site, isHome: false }) %>
 
-    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">‹</button>
-    <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">›</button>
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" type="button" aria-label="Close image">×</button>
 
-    <div class="lightbox-inner">
-      <img id="lightbox-image" src="" alt="" />
-      <div class="lightbox-caption" id="lightbox-caption"></div>
-    </div>
+  <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">‹</button>
+  <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">›</button>
+
+  <div class="lightbox-inner">
+    <img id="lightbox-image" src="" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
   </div>
+</div>
 
-  <script>
-    (function () {
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImage = document.getElementById("lightbox-image");
-      const lightboxCaption = document.getElementById("lightbox-caption");
-      const closeBtn = document.querySelector(".lightbox-close");
-      const prevBtn = document.querySelector(".lightbox-prev");
-      const nextBtn = document.querySelector(".lightbox-next");
-      const triggers = Array.from(document.querySelectorAll("[data-lightbox='gallery']"));
+<script>
+  (function () {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const closeBtn = document.querySelector(".lightbox-close");
+    const prevBtn = document.querySelector(".lightbox-prev");
+    const nextBtn = document.querySelector(".lightbox-next");
+    const triggers = Array.from(document.querySelectorAll("[data-lightbox='gallery']"));
 
-      let currentIndex = 0;
+    let currentIndex = 0;
 
-      function renderImage(index) {
-        const item = triggers[index];
-        if (!item) return;
+    function renderImage(index) {
+      const item = triggers[index];
+      if (!item) return;
 
-        currentIndex = index;
-        lightboxImage.src = item.dataset.full || "";
-        lightboxImage.alt = item.dataset.alt || "";
-        lightboxCaption.textContent = item.dataset.title || "";
+      currentIndex = index;
+      lightboxImage.src = item.dataset.full || "";
+      lightboxImage.alt = item.dataset.alt || "";
+      lightboxCaption.textContent = item.dataset.title || "";
 
-        lightbox.hidden = false;
-        document.body.classList.add("lightbox-open");
-      }
+      lightbox.hidden = false;
+      document.body.classList.add("lightbox-open");
+    }
 
-      function closeLightbox() {
-        lightbox.hidden = true;
-        lightboxImage.src = "";
-        lightboxImage.alt = "";
-        lightboxCaption.textContent = "";
-        document.body.classList.remove("lightbox-open");
-      }
+    function closeLightbox() {
+      lightbox.hidden = true;
+      lightboxImage.src = "";
+      lightboxImage.alt = "";
+      lightboxCaption.textContent = "";
+      document.body.classList.remove("lightbox-open");
+    }
 
-      function showNext() {
-        if (!triggers.length) return;
-        renderImage((currentIndex + 1) % triggers.length);
-      }
+    function showNext() {
+      if (!triggers.length) return;
+      renderImage((currentIndex + 1) % triggers.length);
+    }
 
-      function showPrev() {
-        if (!triggers.length) return;
-        renderImage((currentIndex - 1 + triggers.length) % triggers.length);
-      }
+    function showPrev() {
+      if (!triggers.length) return;
+      renderImage((currentIndex - 1 + triggers.length) % triggers.length);
+    }
 
-      triggers.forEach((trigger, index) => {
-        trigger.addEventListener("click", function (e) {
-          e.preventDefault();
-          renderImage(index);
-        });
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener("click", function (e) {
+        e.preventDefault();
+        renderImage(index);
       });
+    });
 
-      closeBtn.addEventListener("click", closeLightbox);
-      nextBtn.addEventListener("click", showNext);
-      prevBtn.addEventListener("click", showPrev);
+    closeBtn.addEventListener("click", closeLightbox);
+    nextBtn.addEventListener("click", showNext);
+    prevBtn.addEventListener("click", showPrev);
 
-      lightbox.addEventListener("click", function (e) {
-        if (e.target === lightbox) closeLightbox();
-      });
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
 
-      document.addEventListener("keydown", function (e) {
-        if (lightbox.hidden) return;
+    document.addEventListener("keydown", function (e) {
+      if (lightbox.hidden) return;
 
-        if (e.key === "Escape") closeLightbox();
-        if (e.key === "ArrowRight") showNext();
-        if (e.key === "ArrowLeft") showPrev();
-      });
-    })();
-  </script>
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+    });
+  })();
+</script>
 </body>
 </html>
