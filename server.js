@@ -16,7 +16,12 @@ const PORT = Number(process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Serve /public files at site root
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Keep old /public URLs working
 app.use('/public', express.static(path.join(__dirname, 'public')));
+
 app.use(express.urlencoded({ extended: true }));
 
 function env(name, fallback = '') {
@@ -49,6 +54,79 @@ function getSite() {
     formRecipient: env('FORM_RECIPIENT', email)
   };
 }
+
+// --------------------
+// robots.txt + sitemap.xml
+// --------------------
+const normaliseBaseUrl = (req) => {
+  const envBase =
+    process.env.BASE_URL ||
+    process.env.PUBLIC_BASE_URL ||
+    `${req.protocol}://${req.get("host")}`;
+
+  return String(envBase).replace(/\/+$/, "");
+};
+
+const xmlEscape = (str = "") =>
+  String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+app.get("/robots.txt", (req, res) => {
+  const baseUrl = normaliseBaseUrl(req);
+
+  res.type("text/plain");
+  res.send(
+`User-agent: *
+Allow: /
+
+# Keep private/admin routes out of search
+Disallow: /admin
+Disallow: /login
+Disallow: /logout
+
+Sitemap: ${baseUrl}/sitemap.xml
+`
+  );
+});
+
+app.get("/sitemap.xml", (req, res) => {
+  const baseUrl = normaliseBaseUrl(req);
+  const today = new Date().toISOString().slice(0, 10);
+
+  // Add every public page you want Google to index here.
+  // Do NOT include admin, login, upload, or private routes.
+  const pages = [
+    { loc: "/", changefreq: "weekly", priority: "1.0" },
+    { loc: "/gallery", changefreq: "weekly", priority: "0.8" },
+
+    // Add these only if they are real public routes on your site:
+    // { loc: "/about", changefreq: "monthly", priority: "0.7" },
+    // { loc: "/services", changefreq: "weekly", priority: "0.8" },
+    // { loc: "/faq", changefreq: "monthly", priority: "0.6" },
+    // { loc: "/contact", changefreq: "monthly", priority: "0.7" },
+  ];
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages
+  .map(
+    (p) => `  <url>
+    <loc>${xmlEscape(baseUrl + p.loc)}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${p.changefreq}</changefreq>
+    <priority>${p.priority}</priority>
+  </url>`
+  )
+  .join("\n")}
+</urlset>`;
+
+  res.header("Content-Type", "application/xml");
+  res.send(xml);
+});
 
 const services = [
   {
